@@ -135,117 +135,58 @@ function createPlayer(name) {
   return { playerName, addToScore };
 }
 
-const GameBoard = function () {
+function GameLogic() {
   let board = [
     ["0", "1", "2"],
     ["3", "4", "5"],
     ["6", "7", "8"],
   ];
 
-  let currentPlayer = "X";
-  let countTurns = 0;
-  let playerChange = true;
+  function placeInboard() {}
 
-  let row;
-  let column;
+  function changePlayer() {}
 
-  let scoreX = 0;
-  let scoreO = 0;
+  function nextRound() {}
 
-  //made for displaying
-  const addSymbol = (cell) => {
-    if (cell.innerText !== "") return;
-    cell.innerText = currentPlayer;
-    const placeInBoard = cell.id;
-    cell.style.pointerEvents = "none";
+  function checkScore() {}
 
-    //needs to be separate function
-    row = placeInBoard.charAt(0);
-    column = placeInBoard.charAt(1);
+  function checkWinner() {}
 
-    board[row][column] = currentPlayer;
+  function playAgain() {}
+
+  return {
+    placeInboard,
+    changePlayer,
+    nextRound,
+    checkScore,
+    checkWinner,
+    playAgain,
   };
+}
 
-  const placeSymbolInBoard = () => {
-    
+function UiManipulation() {
+  function addSymbol() {}
+
+  function playerTurnSignifier() {}
+
+  function nextRoundSignifier() {}
+
+  function modifyUiAccoringToWinner() {}
+
+  function makeCellsFunctional() {}
+
+  function resetUi() {}
+
+  return {
+    addSymbol,
+    changePlayer,
+    playerTurnSignifier,
+    nextRoundSignifier,
+    modifyUiAccoringToWinner,
+    makeCellsFunctional,
+    resetUi,
   };
-
-  //made for displaying
-  const changePlayer = (gameEnd) => {
-    if (gameEnd) return;
-    if (!playerChange) return;
-    if (currentPlayer === "X") {
-      currentPlayer = "O";
-    } else {
-      currentPlayer = "X";
-    }
-
-    playerTurn.textContent = `${currentPlayer}'s turn`;
-    countTurns++;
-  };
-
-  //game logic
-  const nextRound = () => {
-    if (currentPlayer === "X") {
-      currentPlayer = "O";
-    } else {
-      currentPlayer = "X";
-    }
-
-    playerTurn.textContent = `${currentPlayer}'s turn`;
-  };
-
-  //game logic
-  const checkScore = (countTurns) => {
-    if (countTurns > 3) {
-      for (let i = 0; i <= 2; i++) {
-        {
-          if (board[i][0] === board[i][1] && board[i][0] === board[i][2]) {
-            return true;
-          } else if (
-            board[0][i] === board[1][i] &&
-            board[0][i] === board[2][i]
-          ) {
-            return true;
-          }
-        }
-      }
-      if (
-        (board[0][0] === board[1][1] && board[0][0] === board[2][2]) ||
-        (board[2][0] === board[1][1] && board[2][0] === board[0][2])
-      ) {
-        return true;
-      }
-    }
-    return false;
-  };
-
-  //very mixed needs to be separated, but i would say its in the game logic
-  const checkWinner = (gameEnded) => {
-    if (gameEnded) {
-      playerTurn.textContent = `${currentPlayer} wins`;
-      countTurns = 0;
-      playAgain.style.visibility = "visible";
-      gridOfCells.style.pointerEvents = "none";
-      if (currentPlayer == "X") {
-        scoreX++;
-        scoreXHtml.innerText = scoreX;
-      } else {
-        scoreO++;
-        scoreOHtml.innerText = scoreO;
-      }
-    } else if (countTurns === 8) {
-      playerTurn.textContent = `Tie game!`;
-      countTurns = 0;
-      playAgain.style.visibility = "visible";
-      playerChange = false;
-    }
-  };
-
-  return { addSymbol, changePlayer, nextRound, checkScore, checkWinner };
-};
-
-const interfaceOfGame = function () {};
+}
 
 let playerX = createPlayer("X");
 

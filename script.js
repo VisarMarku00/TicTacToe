@@ -142,6 +142,15 @@ function GameLogic() {
     ["6", "7", "8"],
   ];
 
+  let countTurns = 0;
+  let playerChange = true;
+
+  let row;
+  let column;
+
+  let scoreX = 0;
+  let scoreO = 0;
+
   function placeInboard() {}
 
   function changePlayer() {}
@@ -165,6 +174,17 @@ function GameLogic() {
 }
 
 function UiManipulation() {
+  const gridOfCells = document.getElementById("board");
+  const cells = document.querySelectorAll(".cell");
+
+  let currentPlayer = "X";
+  let playerTurn = document.getElementById("player-turn");
+
+  let scoreXHtml = document.getElementById("score-x");
+  let scoreOHtml = document.getElementById("score-o");
+
+  let playAgain = document.getElementById("play-again");
+
   function addSymbol() {}
 
   function playerTurnSignifier() {}
